@@ -6,6 +6,7 @@ import logo from '../assets/image/TamerBingo-2.png';
 import bg from '../assets/image/bg.jpeg';
 import HelperFunctions from '../utils/HelperFunctions';
 import applause from '../assets/audio/applause.mp3';
+import Particles from "react-tsparticles";
 
 export default class Bingo extends Component {
 
@@ -21,11 +22,24 @@ export default class Bingo extends Component {
 
     this.bingoHelper = new BingoHelper();
     this.helperFunctions = new HelperFunctions();
+
+    this.particlesInit = this.particlesInit.bind(this);
+    this.particlesLoaded = this.particlesLoaded.bind(this);
       
   }
 
   async componentDidMount(){
     this.setState({data: await this.helperFunctions.chunk(this.initData())});
+  }
+
+  particlesInit(main) {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+  }
+
+  particlesLoaded(container) {
+    console.log(container);
   }
 
   initData = () => {
@@ -111,6 +125,7 @@ export default class Bingo extends Component {
 
     return (
       <div className="page-container">
+
           <div id="logo">
             <img src={logo} alt="" />
           </div>
@@ -124,7 +139,110 @@ export default class Bingo extends Component {
         </p>
         
         {celebrate && <div className="celebrate" onClick={() => this.handleCloseCelebrate()}>
-            <iframe src="https://giphy.com/embed/3oz9ZE2Oo9zRC" frameBorder="0" className="giphy-embed" allowFullScreen={false}></iframe>
+
+        <Particles
+        id="tsparticles"
+        init={this.particlesInit}
+        loaded={this.particlesLoaded}
+        options={{
+          fpsLimit: 60,
+          fullScreen: {
+            enable: true
+          },
+          background: {
+            color: "#232323",
+            opacity: 0
+          },
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onClick: { enable: true, mode: "push" },
+              onHover: {
+                enable: true,
+                mode: "repulse",
+                parallax: { enable: false, force: 60, smooth: 10 }
+              },
+              resize: true
+            },
+            modes: {
+              bubble: { distance: 400, duration: 2, opacity: 0.8, size: 40, speed: 3 },
+              grab: { distance: 400, links: { opacity: 1 } },
+              push: { quantity: 4 },
+              remove: { quantity: 2 },
+              repulse: { distance: 200, duration: 0.4 }
+            }
+          },
+          particles: {
+            color: { value: "random" },
+            links: {
+              color: "random",
+              distance: 150,
+              enable: false,
+              opacity: 0.4,
+              width: 1
+            },
+            move: {
+              attract: { enable: false, rotateX: 600, rotateY: 1200 },
+              bounce: false,
+              direction: "none",
+              enable: true,
+              out_mode: "out",
+              random: false,
+              speed: 3,
+              straight: false
+            },
+            rotate: {
+              animation: {
+                enable: true,
+                speed: 10,
+                sync: false
+              }
+            },
+            number: { density: { enable: true, area: 800 }, value: 100 },
+            opacity: {
+              animation: { enable: true, minimumValue: 0.5, speed: 1, sync: false },
+              random: false,
+              value: 1
+            },
+            shape: {
+              character: [
+                {
+                  fill: true,
+                  font: "Verdana",
+                  value: [
+                    "🤡", 
+                    String.fromCodePoint(0x1F604), 
+                    String.fromCodePoint(0x1F925), 
+                    String.fromCodePoint(0x1F388), 
+                    String.fromCodePoint(0x1F389),
+                    String.fromCodePoint(0x1F44F),
+                    String.fromCodePoint(0x2728),
+                    String.fromCodePoint(0x2B50),
+                    String.fromCodePoint(0x2B55)
+                  ],
+                  style: "",
+                  weight: 400
+                }
+              ],
+              image: {
+                height: 100,
+                replace_color: true,
+                src: "images/github.svg",
+                width: 100
+              },
+              polygon: { nb_sides: 5 },
+              stroke: { color: "random", width: 1 },
+              type: "char"
+            },
+            size: {
+              anim: { enable: true, minimumValue: 8, speed: 20, sync: false },
+              random: { minimumValue: 8, enable: true },
+              value: 32
+            }
+          },
+          detectRetina: true
+        }}
+      />
 
             <audio autoPlay>
     <source src={applause} type="audio/mp3" />
