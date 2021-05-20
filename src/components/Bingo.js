@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { Component } from "react";
 import React from 'react';
 
 import BingoHelper from '../utils/BingoHelper';
@@ -121,134 +121,136 @@ export default class Bingo extends Component {
   }
     
   render() {
-    const { isBingo, celebrate, data, totalBingo } = this.state;
+    const { celebrate, data } = this.state;
 
     return (
       <div className="page-container">
 
-          <div id="logo">
+      <div className="page-header">
+         <div id="logo">
             <img src={logo} alt="" />
           </div>
         
-        <h3>
-          Welcome to Bingo App
-        </h3>
-  
-        <p className="page-title">
-          Topic: The 20 Most Popular Lies We Tell Every Day
-        </p>
-        
-        {celebrate && <div className="celebrate" onClick={() => this.handleCloseCelebrate()}>
+          <h3 className="page-title">
+            Welcome to Bingo App
+          </h3>
 
-        <Particles
-        id="tsparticles"
-        init={this.particlesInit}
-        loaded={this.particlesLoaded}
-        options={{
-          fpsLimit: 60,
-          fullScreen: {
-            enable: true
-          },
-          background: {
-            color: "#232323",
-            opacity: 0
-          },
-          interactivity: {
-            detect_on: "canvas",
-            events: {
-              onClick: { enable: true, mode: "push" },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-                parallax: { enable: false, force: 60, smooth: 10 }
+          <p className="page-desc">
+            Topic: The 20 Most Popular Lies We Tell Every Day
+          </p>
+      </div>
+        
+      {celebrate && <div className="celebrate" onClick={() => this.handleCloseCelebrate()}>
+
+          <Particles
+          id="tsparticles"
+          init={this.particlesInit}
+          loaded={this.particlesLoaded}
+          options={{
+            fpsLimit: 60,
+            fullScreen: {
+              enable: true
+            },
+            background: {
+              color: "#232323",
+              opacity: 0
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onClick: { enable: true, mode: "push" },
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                  parallax: { enable: false, force: 60, smooth: 10 }
+                },
+                resize: true
               },
-              resize: true
-            },
-            modes: {
-              bubble: { distance: 400, duration: 2, opacity: 0.8, size: 40, speed: 3 },
-              grab: { distance: 400, links: { opacity: 1 } },
-              push: { quantity: 4 },
-              remove: { quantity: 2 },
-              repulse: { distance: 200, duration: 0.4 }
-            }
-          },
-          particles: {
-            color: { value: "random" },
-            links: {
-              color: "random",
-              distance: 150,
-              enable: false,
-              opacity: 0.4,
-              width: 1
-            },
-            move: {
-              attract: { enable: false, rotateX: 600, rotateY: 1200 },
-              bounce: false,
-              direction: "none",
-              enable: true,
-              out_mode: "out",
-              random: false,
-              speed: 3,
-              straight: false
-            },
-            rotate: {
-              animation: {
-                enable: true,
-                speed: 10,
-                sync: false
+              modes: {
+                bubble: { distance: 400, duration: 2, opacity: 0.8, size: 40, speed: 3 },
+                grab: { distance: 400, links: { opacity: 1 } },
+                push: { quantity: 4 },
+                remove: { quantity: 2 },
+                repulse: { distance: 200, duration: 0.4 }
               }
             },
-            number: { density: { enable: true, area: 800 }, value: 100 },
-            opacity: {
-              animation: { enable: true, minimumValue: 0.5, speed: 1, sync: false },
-              random: false,
-              value: 1
-            },
-            shape: {
-              character: [
-                {
-                  fill: true,
-                  font: "Verdana",
-                  value: [
-                    "🤡", 
-                    String.fromCodePoint(0x1F604), 
-                    String.fromCodePoint(0x1F925), 
-                    String.fromCodePoint(0x1F388), 
-                    String.fromCodePoint(0x1F389),
-                    String.fromCodePoint(0x1F44F),
-                    String.fromCodePoint(0x2728),
-                    String.fromCodePoint(0x2B50),
-                    String.fromCodePoint(0x2B55)
-                  ],
-                  style: "",
-                  weight: 400
-                }
-              ],
-              image: {
-                height: 100,
-                replace_color: true,
-                src: "images/github.svg",
-                width: 100
+            particles: {
+              color: { value: "random" },
+              links: {
+                color: "random",
+                distance: 150,
+                enable: false,
+                opacity: 0.4,
+                width: 1
               },
-              polygon: { nb_sides: 5 },
-              stroke: { color: "random", width: 1 },
-              type: "char"
+              move: {
+                attract: { enable: false, rotateX: 600, rotateY: 1200 },
+                bounce: false,
+                direction: "none",
+                enable: true,
+                out_mode: "out",
+                random: false,
+                speed: 3,
+                straight: false
+              },
+              rotate: {
+                animation: {
+                  enable: true,
+                  speed: 10,
+                  sync: false
+                }
+              },
+              number: { density: { enable: true, area: 800 }, value: 100 },
+              opacity: {
+                animation: { enable: true, minimumValue: 0.5, speed: 1, sync: false },
+                random: false,
+                value: 1
+              },
+              shape: {
+                character: [
+                  {
+                    fill: true,
+                    font: "Verdana",
+                    value: [
+                      "🤡", 
+                      String.fromCodePoint(0x1F604), 
+                      String.fromCodePoint(0x1F925), 
+                      String.fromCodePoint(0x1F388), 
+                      String.fromCodePoint(0x1F389),
+                      String.fromCodePoint(0x1F44F),
+                      String.fromCodePoint(0x2728),
+                      String.fromCodePoint(0x2B50),
+                      String.fromCodePoint(0x2B55)
+                    ],
+                    style: "",
+                    weight: 400
+                  }
+                ],
+                image: {
+                  height: 100,
+                  replace_color: true,
+                  src: "images/github.svg",
+                  width: 100
+                },
+                polygon: { nb_sides: 5 },
+                stroke: { color: "random", width: 1 },
+                type: "char"
+              },
+              size: {
+                anim: { enable: true, minimumValue: 8, speed: 20, sync: false },
+                random: { minimumValue: 8, enable: true },
+                value: 32
+              }
             },
-            size: {
-              anim: { enable: true, minimumValue: 8, speed: 20, sync: false },
-              random: { minimumValue: 8, enable: true },
-              value: 32
-            }
-          },
-          detectRetina: true
-        }}
-      />
+            detectRetina: true
+          }}
+        />
 
-            <audio autoPlay>
-    <source src={applause} type="audio/mp3" />
-    Your browser does not support the audio element.
-</audio>
-          </div>}
+        <audio autoPlay>
+            <source src={applause} type="audio/mp3" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>}
 
         <div className="card-container" style={{background: `url(${bg})`}}>
           {data && data.map((row, index) => {
