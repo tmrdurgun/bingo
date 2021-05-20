@@ -1,10 +1,12 @@
 import './App.scss';
 
+import Bingo from './components/Bingo';
+
 function App() {
 
   return (
     <div className="App">
-       test
+        <Bingo />
     </div>
   );
 }
