@@ -5,6 +5,7 @@ import BingoHelper from '../utils/BingoHelper';
 import logo from '../assets/image/TamerBingo-2.png';
 import bg from '../assets/image/bg.jpeg';
 import HelperFunctions from '../utils/HelperFunctions';
+import applause from '../assets/audio/applause.mp3';
 
 export default class Bingo extends Component {
 
@@ -124,6 +125,11 @@ export default class Bingo extends Component {
         
         {celebrate && <div className="celebrate" onClick={() => this.handleCloseCelebrate()}>
             <iframe src="https://giphy.com/embed/3oz9ZE2Oo9zRC" frameBorder="0" className="giphy-embed" allowFullScreen={false}></iframe>
+
+            <audio autoPlay>
+    <source src={applause} type="audio/mp3" />
+    Your browser does not support the audio element.
+</audio>
           </div>}
 
         <div className="card-container" style={{background: `url(${bg})`}}>

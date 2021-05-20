@@ -95,6 +95,7 @@
     &:hover, &.selected{
       cursor: pointer;
       background: #f8c312;
+      transition: all 350ms ease;
     }
   }
 }
