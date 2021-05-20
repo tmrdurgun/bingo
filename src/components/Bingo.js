@@ -15,7 +15,6 @@ export default class Bingo extends Component {
 
     this.state = {
       isBingo: false,
-      totalBingo: 0,
       data: null,
       celebrate: false
     }
@@ -107,9 +106,8 @@ export default class Bingo extends Component {
   
       if(isBingo) {
         this.setState((prevState) => ({
-          isBingo: prevState.totalBingo < 2 ? isBingo : false,
-          celebrate: prevState.totalBingo < 2 ? true : false,
-          totalBingo: prevState.totalBingo += 1
+          isBingo,
+          celebrate: true,
         }))
       }
     })
