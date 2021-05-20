@@ -24,7 +24,7 @@ export default class Bingo extends Component {
   }
 
   async componentDidMount(){
-    this.setState({data: await this.helperFunctions.chunk(this.initData())})
+    this.setState({data: await this.helperFunctions.chunk(this.initData())});
   }
 
   initData = () => {
@@ -64,6 +64,8 @@ export default class Bingo extends Component {
       }
     })
   }
+
+  resetData = async () => this.setState({data: await this.helperFunctions.chunk(this.initData())})
   
   handleItemSelect = async (rowItem) => {
 
@@ -89,16 +91,22 @@ export default class Bingo extends Component {
       const isBingo = await this.bingoHelper.isBingo(this.state.data);
   
       if(isBingo) {
-        this.setState({
-          isBingo,
-          celebrate: true
-        })
+        this.setState((prevState) => ({
+          isBingo: prevState.totalBingo < 2 ? isBingo : false,
+          celebrate: prevState.totalBingo < 2 ? true : false,
+          totalBingo: prevState.totalBingo += 1
+        }))
       }
     })
   }
+
+  handleCloseCelebrate = async () => {
+    this.setState({celebrate: false}); 
+    this.resetData();
+  }
     
   render() {
-    const { isBingo, celebrate, data } = this.state;
+    const { isBingo, celebrate, data, totalBingo } = this.state;
 
     return (
       <div className="page-container">
@@ -114,7 +122,7 @@ export default class Bingo extends Component {
           Topic: The 20 Most Popular Lies We Tell Every Day
         </p>
         
-        {celebrate && <div className="celebrate" onClick={() => this.setState({celebrate: false})}>
+        {celebrate && <div className="celebrate" onClick={() => this.handleCloseCelebrate()}>
             <iframe src="https://giphy.com/embed/3oz9ZE2Oo9zRC" frameBorder="0" className="giphy-embed" allowFullScreen={false}></iframe>
           </div>}
 
